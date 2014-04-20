@@ -1,0 +1,118 @@
+<krpano version="1.17" title="Virtual Tour" onstart="startup();">
+
+	<include url="skin/vtourskin.xml" />
+
+	<!-- set skin settings: bingmaps? gyro? thumbnail controlling? tooltips? -->
+	<skin_settings bingmaps="false"
+	               bingmaps_key=""
+	               bingmaps_zoombuttons="false"
+	               gyro="true"
+	               thumbs_width="120" thumbs_height="80" thumbs_padding="10" thumbs_crop="0|40|240|160"
+	               thumbs_opened="false"
+	               thumbs_text="false"
+	               thumbs_dragging="true"
+	               thumbs_onhoverscrolling="false"
+	               thumbs_scrollbuttons="false"
+	               thumbs_scrollindicator="false"
+	               thumbs_loop="false"
+	               tooltips_thumbs="false"
+	               tooltips_hotspots="false"
+	               tooltips_mapspots="false"
+	               controlbar_offset="20"
+	               />
+
+	<!-- set optional skin logo url -->
+	<layer name="skin_logo" url="" scale="0.25" opened_onclick="openurl('...',_blank);" />
+
+
+	<action name="startup">
+		if(startscene === null, copy(startscene,scene[0].name));
+		loadscene(get(startscene), null, MERGE);
+	</action>
+<action name="scene_Museum_Perjuangan_1">
+		loadscene(scene_Museum_Perjuangan_1, null, MERGE, BLEND(1));
+		
+	</action>	
+	<action name="scene_Museum_Perjuangan_2">
+		loadscene(scene_Museum_Perjuangan_2, null, MERGE, BLEND(1));
+		
+	</action>	
+	<action name="scene_Museum_Perjuangan_3">
+		loadscene(scene_Museum_Perjuangan_3, null, MERGE, BLEND(1));
+		
+	</action>	
+	<action name="scene_Museum_Perjuangan_4">
+		loadscene(scene_Museum_Perjuangan_4, null, MERGE, BLEND(1));
+		
+	</action>	
+	
+	<scene name="scene_Museum_Perjuangan_1" title="" onstart="" thumburl="panos/Museum_Perjuangan_1.tiles/thumb.jpg" lat="" lng="" heading="">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Museum_Perjuangan_1.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Museum_Perjuangan_1.tiles/mobile_%s.jpg" />
+			<mobile>
+				<cube url="panos/Museum_Perjuangan_1.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+
+	</scene>
+
+	<scene name="scene_Museum_Perjuangan_2" title="" onstart="" thumburl="panos/Museum_Perjuangan_2.tiles/thumb.jpg" lat="" lng="" heading="">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Museum_Perjuangan_2.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Museum_Perjuangan_2.tiles/mobile_%s.jpg" />
+			<mobile>
+				<cube url="panos/Museum_Perjuangan_2.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+
+	</scene>
+
+	<scene name="scene_Museum_Perjuangan_3" title="" onstart="" thumburl="panos/Museum_Perjuangan_3.tiles/thumb.jpg" lat="" lng="" heading="">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Museum_Perjuangan_3.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Museum_Perjuangan_3.tiles/mobile_%s.jpg" />
+			<mobile>
+				<cube url="panos/Museum_Perjuangan_3.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+
+	</scene>
+
+	<scene name="scene_Museum_Perjuangan_4" title="" onstart="" thumburl="panos/Museum_Perjuangan_4.tiles/thumb.jpg" lat="" lng="" heading="">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Museum_Perjuangan_4.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Museum_Perjuangan_4.tiles/mobile_%s.jpg" />
+			<mobile>
+				<cube url="panos/Museum_Perjuangan_4.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+
+	</scene>
+
+
+</krpano>

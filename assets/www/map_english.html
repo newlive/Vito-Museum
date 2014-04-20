@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Museum</title>
+        <meta content="in" http-equiv="content-language">
+        
+        <link rel="stylesheet" href="assets/css/jquery.mobile-1.3.0.min.css"/>
+        <script src="assets/js/cordova-2.5.0.js"></script>
+        <script src="assets/js/jquery-1.9.1.min.js"></script>
+        <script src="assets/js/jquery.mobile-1.3.0.min.js"></script>
+        <link rel="stylesheet" href="assets/css/museum.min.css"/>
+        <link rel="stylesheet" href="assets/css/museum.css"/>
+        <script src="menu_english.js"></script>
+        
+        
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3&sensor=false&language=in"></script>
+        <script type="text/javascript">
+            $(document).on("pageinit", "#map_page", function() {
+                initialize();
+            });
+
+            $(document).on("pagecreate",function(event){
+                  $(window).on("orientationchange",function(event){
+                    alert("Orientation changed to: " + event.orientation);
+                  });                     
+                });
+
+            $(document).ready(function() {
+                getMenu();
+            });
+
+            
+
+            $(document).on('click', '#submit', function(e) {
+                e.preventDefault();
+                calculateRoute();
+            });
+
+            var directionDisplay,
+                directionsService = new google.maps.DirectionsService(),
+                map;
+
+            function initialize() 
+            {
+                directionsDisplay = new google.maps.DirectionsRenderer();
+                var mapCenter = new google.maps.LatLng(-7.815491,110.372263);
+
+                var myOptions = {
+                    zoom:14,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    center: mapCenter
+                }
+
+                map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+                directionsDisplay.setMap(map);
+                directionsDisplay.setPanel(document.getElementById("directions"));  
+            }
+          //   //mulai
+          //   var museum;
+          //   var img = 'assets/img/museum_war.png';
+          //   museum = new google.maps.Marker({
+          //       position: mapCenter,
+          //       map: map,
+          //       title: 'Museum Perjuangan',
+          //       icon: img
+
+          //   });
+
+          //   museum.setMap(map);
+          //   google.maps.event.addListener(museum, 'click', museumf);
+          //   infowindow = new google.maps.InfoWindow();
+
+          //   function museumf(event) {
+          //   var keterangan = "<center><h7><b>Museum Perjuangan</b></h7>\n\
+          //                      <br><img src='assets/img/perjuangan.jpg'\n\
+          //                      style='height:100%;width:100%;'/></center>";
+          //   infowindow.setContent(keterangan);
+          //   infowindow.setPosition(event.latLng);
+          //   infowindow.open(map);
+          // } //<--- Selesai Museum
+
+            function calculateRoute() 
+            {
+                var selectedMode = $("#mode").val(),
+                    start = $("#from").val(),
+                    end = $("#to").val();
+
+                if(start == '' || end == '')
+                {
+                    // cannot calculate route
+                    $("#results").hide();
+                    return;
+                }
+                else
+                {
+                    var request = {
+                        origin:start, 
+                        destination:end,
+                        travelMode: google.maps.DirectionsTravelMode[selectedMode]
+                    };
+
+                    directionsService.route(request, function(response, status) {
+                        if (status == google.maps.DirectionsStatus.OK) {
+                            directionsDisplay.setDirections(response); 
+                            $("#results").show();
+                            /*
+                                var myRoute = response.routes[0].legs[0];
+                                for (var i = 0; i < myRoute.steps.length; i++) {
+                                    alert(myRoute.steps[i].instructions);
+                                }
+                            */
+                        }
+                        else {
+                            $("#results").hide();
+                        }
+                    });
+
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div data-role="page" id="map_page" data-theme="b">
+            <div data-role="header" data-theme="a">
+                <h1></h1>
+                <a href="#menu-panel"
+                    data-icon="bars"
+                    data-theme="b"
+                    data-corners="false"
+                    style="">MENU</a>
+            </div>
+            <div data-role="content" data-theme="b">
+                <div class="ui-bar-c ui-corner-all ui-shadow" style="padding:1em;" >
+                    <div id="map_canvas" style="height:300px;"></div>
+                    <div data-role="fieldcontain" data-theme="e">
+                        <label for="from">Form</label> 
+                        <input type="text" id="from" value=""/>
+                    </div>
+                    <div data-role="fieldcontain" data-theme="e">
+                        <label for="to">To</label> 
+                        <input type="text" id="to" disabled="disabled" value="Museum Perjuangan"/>
+                    </div>
+                    <div data-role="fieldcontain" data-theme="e">
+                        <label for="mode" class="select">Transportation:</label>
+                        <select name="select-choice-0" id="mode">
+                            <option value="DRIVING">Car</option>
+                            <option value="WALKING">Walking</option>
+                            <option value="BICYCLING">Bycicle</option>
+                        </select>
+                    </div>
+                    <a data-icon="search" data-iconpos="right" data-role="button" href="#" id="submit">Find Direction</a>
+                </div>
+                <div id="results" style="display:none;">
+                    <div id="directions"></div>
+                </div>
+            </div>
+            <div data-role="footer"
+            data-position="fixed"
+            data-theme="a"
+            >
+            <h1>MAP LOCATION</h1>
+        </div><!-- footer -->
+        <div data-role="panel" data-position-fixed="true" data-theme="a" id="menu-panel">
+                <ul id="menu" data-role="listview" data-theme="c"></ul>
+            </div>
+        </div>
+    </body>
+</html>

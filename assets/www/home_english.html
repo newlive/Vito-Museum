@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <Title>Museum</Title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="assets/css/jquery.mobile-1.3.0.min.css"/>
+        <link rel="stylesheet" href="assets/css/mystyle.css"/>
+        <link rel="stylesheet" href="assets/css/museum.min.css"/>
+        <link rel="stylesheet" href="assets/css/museum.css"/>
+        <script src="assets/js/cordova-2.5.0.js"></script>
+        <script src="assets/js/jquery-1.9.1.min.js"></script>
+        <script src="assets/js/jquery.mobile-1.3.0.min.js"></script>
+        <script src="lang.js"></script>
+        
+    </head>
+    <body>
+        <div data-role="page" data-theme="b">
+        <div data-role="header" data-theme="a">
+                <h1>VITO-MUSEUM</h1>
+                
+            </div>
+        
+            <div data-role="content">
+                <br>
+                <br>
+                <center><img src="assets/img/logo.png" style="widht:auto; max-width: 70%;"/></center>
+                <div id="12"></div>
+                <br>
+                <br>
+                <br>
+        <div data-role="controlgroup" id="my-controlgroup" style="width:auto;max-width:75%;margin:0 auto">
+
+            
+            <button data-theme="b" onclick="mulai();">Start Tour</button>
+            <button data-theme="b" onclick="map();">Map</button>
+            <a href="#bahasa" data-rel="popup"  data-role="button" data-inline="true" data-theme="b" data-transition="flip">Language (En)</a>
+            <button data-theme="b" onclick="about();">About</button>
+     </div>
+                
+            </div>
+
+            <div data-role="footer" data-theme="a" data-position="fixed">
+                <h1>HOME</h1>
+            </div>
+
+            <div data-role="popup" id="bahasa" data-theme="c">
+                        <ul data-role="listview" id="langr" data-theme="a">
+                            <li><a href="#" id="indonesia" data-rel="back">Indonesia</a></li>
+                            <li><a href="#" id="english" data-rel="back" >English</a></li>
+                        </ul>
+                </div>
+                        
+        </div>
+        <script type="text/javascript">
+            $(document).on("pagecreate",function(event){
+                  $(window).on("orientationchange",function(event){
+                    alert("Orientation changed to: " + event.orientation);
+                  });                     
+                });
+            
+            
+            $(document).ready(function() {
+                getLang()
+            });
+
+            function mulai() {
+                $(location).attr('href','index3.html');
+            }
+            function about() {
+                $(location).attr('href','about_english.html');
+            }
+
+            
+            function map() {
+                $(location).attr('href','map_english.html');
+            }
+            
+        </script>
+    </body>
+</html>
